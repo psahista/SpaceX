@@ -1,0 +1,87 @@
+<div>
+  <div><h4 class="heading-style">SpaceX Launch Programs</h4></div>
+  <div class="row" style="padding: 10px">
+    <div class="filter col-xs-12 col-sm-4 col-md-3 col-lg-3">
+      <h6>Filters</h6>
+      <div>
+        <p style="text-align: center">Lunch Year</p>
+        <hr />
+        <div class="row year-btn" *ngFor="let item of years">
+          <button class="col-6 year-btn-style" (click)="getYear(item.value1)">
+            {{ item.value1 }}
+          </button>
+          <button class="col-6 year-btn-style" (click)="getYear(item.value2)">
+            {{ item.value2 }}
+          </button>
+        </div>
+        <p style="text-align: center; margin-top: 20px">Successful Lunch</p>
+        <hr />
+        <div class="row year-btn">
+          <button
+            class="col-6 year-btn-style"
+            (click)="getSuccessfulLunch(true)"
+          >
+            true
+          </button>
+          <button
+            class="col-6 year-btn-style"
+            (click)="getSuccessfulLunch(false)"
+          >
+            false
+          </button>
+        </div>
+        <p style="text-align: center; margin-top: 20px">Successful Landing</p>
+        <hr />
+        <div class="row year-btn">
+          <button
+            class="col-6 year-btn-style"
+            (click)="getSuccessfulLanding(true)"
+          >
+            true
+          </button>
+          <button
+            class="col-6 year-btn-style"
+            (click)="getSuccessfulLanding(false)"
+          >
+            false
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mission col-xs-12 col-sm-8 col-md-9 col-lg-9">
+      <div class="flex-container1 row">
+        <div
+          class="card-container col-xs-12 col-sm-6 col-md-3 col-lg-3"
+          style="padding-bottom: 20px"
+          *ngFor="let mission of missionDetails; let i = index"
+        >
+          <div class="card">
+            <img
+              class="card-img-top"
+              src="{{ mission.links.mission_patch }}"
+              alt="no mission image"
+              style="padding: 5px; background-color: #f0eeee"
+            />
+            <div class="card-body">
+              <h6 class="misssion-name">
+                {{ mission.mission_name }} #{{ i + 1 }}
+              </h6>
+              <h6 class="mission-data">Mission Ids:</h6>
+              <h6 class="mission-data">
+                Launch Year: <span> {{ mission.launch_year }}</span>
+              </h6>
+              <h6 class="mission-data">
+                Successful Lunch:<span>{{ mission.launch_success }}</span>
+              </h6>
+              <h6 class="mission-data">
+                Successful Landing:<span>{{
+                  mission.rocket.first_stage.cores[0].land_success
+                }}</span>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
